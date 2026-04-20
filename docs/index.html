@@ -419,30 +419,31 @@
       </section>
 
       <section>
-        <h1>Serverless and reserved capacity</h1>
+        <h1>Hosted vs Serverless (how you pay)</h1>
         <ul>
-          <li>Self-managed clusters hold <strong>headroom</strong> for peak, HA, and growth—you pay for idle capacity.</li>
-          <li>Serverless ties cost to <strong>usage</strong>; internal TCO models often land near <strong>~50% lower effective spend</strong> vs. always-on reserved sizing.</li>
+          <li><strong>Elastic Cloud Hosted</strong> is managed <strong>PaaS</strong>: you <strong>size</strong> deployments (capacity tiers—RAM, CPU, storage) and usually keep <strong>headroom</strong> for peaks. Cost tracks that <strong>provisioned</strong> footprint—even when utilization dips.</li>
+          <li><strong>Elastic Serverless</strong> is <strong>consumption-based</strong>: billing follows <strong>ingest</strong>, <strong>retention</strong>, and other product meters—not reserving a cluster’s always-on capacity. Internal TCO models sometimes show <strong>~50% lower effective spend</strong> vs. over-provisioned Hosted when workloads are bursty.</li>
         </ul>
       </section>
 
       <section>
-        <p class="slide-eyebrow">Serverless</p>
-        <h1>TCO: reserved vs. usage-aligned</h1>
+        <p class="slide-eyebrow">TCO shape</p>
+        <h1>Provisioned (Hosted) vs metered (Serverless)</h1>
+        <p class="section-lead">Same Elastic stack features—different commercial model: <strong>sized infrastructure</strong> vs <strong>ingest &amp; retention</strong>.</p>
         <div class="tc-wrap">
           <div class="tc-row">
-            <div class="lbl">Illustrative: cost with reserved capacity + headroom</div>
+            <div class="lbl">Illustrative: Elastic Cloud Hosted — provisioned capacity + headroom</div>
             <div class="tc-track">
               <div class="tc-fill reserve"><span>100%</span></div>
             </div>
           </div>
           <div class="tc-row">
-            <div class="lbl">Illustrative: usage-aligned spend (no idle reserve)</div>
+            <div class="lbl">Illustrative: Elastic Serverless — ingest &amp; retention (no idle cluster to reserve)</div>
             <div class="tc-track">
               <div class="tc-fill usage"><span>~50%</span></div>
             </div>
           </div>
-          <p class="tc-note">Illustration only—not a list-price quote. See <a href="https://www.elastic.co/blog/elastic-cloud-serverless-pricing-packaging" target="_blank" rel="noopener">Elastic Serverless pricing &amp; packaging</a>.</p>
+          <p class="tc-note">Illustration only—not a quote. <strong>Hosted</strong>: <a href="https://www.elastic.co/pricing/elastic-cloud" target="_blank" rel="noopener">Elastic Cloud pricing</a> (sized deployments). <strong>Serverless</strong>: <a href="https://www.elastic.co/blog/elastic-cloud-serverless-pricing-packaging" target="_blank" rel="noopener">pricing &amp; packaging</a> (consumption). Compare with your workload.</p>
         </div>
       </section>
 
@@ -461,7 +462,7 @@
           <li><a href="https://github.com/blookot/elastic-releases" target="_blank" rel="noopener">blookot/elastic-releases</a></li>
           <li><a href="https://www.elastic.co/docs/deploy-manage/upgrade/plan-upgrade" target="_blank" rel="noopener">Plan your upgrade</a> · <a href="https://www.elastic.co/docs/deploy-manage/upgrade#upgrade-paths" target="_blank" rel="noopener">Upgrade paths</a></li>
           <li><a href="https://www.elastic.co/support/eol" target="_blank" rel="noopener">Elastic support &amp; EOL</a></li>
-          <li><a href="https://www.elastic.co/blog/elastic-cloud-serverless-pricing-packaging" target="_blank" rel="noopener">Serverless pricing &amp; packaging</a></li>
+          <li><a href="https://www.elastic.co/pricing/elastic-cloud" target="_blank" rel="noopener">Elastic Cloud (Hosted) pricing</a> · <a href="https://www.elastic.co/blog/elastic-cloud-serverless-pricing-packaging" target="_blank" rel="noopener">Serverless pricing &amp; packaging</a></li>
         </ul>
       </section>
 
