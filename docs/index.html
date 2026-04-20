@@ -1,25 +1,131 @@
 <!DOCTYPE html>
-<!-- GitHub Pages: Settings → Pages → Build from branch → main → /docs → Save. Site: https://<user>.github.io/<repo>/ -->
+<!-- GitHub Pages: Settings → Pages → Branch main, folder /docs -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elastic upgrades &amp; Serverless</title>
+  <title>Elastic upgrade &amp; Serverless</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/black.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/white.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --accent: #00bfb3;
-      --muted: #9ca3af;
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: #d2d2d7;
+      --elastic-teal: #00bfb3;
+      --surface: #f5f5f7;
     }
-    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; font-weight: 600; }
-    .reveal h1 { color: var(--accent); }
-    .reveal .subtitle { color: var(--muted); font-size: 0.55em; margin-top: 0.5em; }
-    .reveal ul.compact li { margin: 0.35em 0; }
-    .reveal small.ref { font-size: 0.45em; color: var(--muted); display: block; margin-top: 1.2em; }
-    .reveal .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left; font-size: 0.85em; }
-    .reveal .tag { display: inline-block; background: rgba(0,191,179,0.15); color: var(--accent); padding: 0.15em 0.5em; border-radius: 4px; font-size: 0.75em; margin-bottom: 0.5em; }
-    .reveal blockquote { border-left: 4px solid var(--accent); padding-left: 1em; font-style: normal; box-shadow: none; background: rgba(255,255,255,0.04); }
+    .reveal { font-family: "IBM Plex Sans", system-ui, sans-serif; color: var(--ink); }
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: inherit;
+      text-transform: none;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .reveal h1 { font-size: 2.2em; }
+    .reveal h2 { font-size: 1.35em; font-weight: 500; color: var(--muted); margin-top: 0.35em; }
+    .reveal .deck-title { margin-bottom: 0.15em; }
+    .reveal .slide-number { color: var(--muted); opacity: 0.9; }
+    .reveal ul { text-align: left; max-width: 34em; margin: 0.75em auto 0; }
+    .reveal ul li { margin: 0.65em 0; font-size: 0.92em; line-height: 1.45; }
+    .reveal a { color: var(--elastic-teal); }
+    .reveal .footnote {
+      margin-top: 2em;
+      font-size: 0.42em;
+      color: var(--muted);
+      line-height: 1.4;
+      max-width: 48em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Stat infographic rows */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.25rem;
+      max-width: 52rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+    .stat-card .n {
+      font-size: 2.35em;
+      font-weight: 600;
+      color: var(--elastic-teal);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .stat-card .lbl {
+      font-size: 0.72em;
+      color: var(--ink);
+      margin-top: 0.5rem;
+      line-height: 1.35;
+      font-weight: 500;
+    }
+    .stat-card .src {
+      font-size: 0.5em;
+      color: var(--muted);
+      margin-top: 0.65rem;
+    }
+
+    /* TCO comparison bars */
+    .tc-wrap { max-width: 44rem; margin: 1.5rem auto 0; text-align: left; }
+    .tc-row { margin-bottom: 1.15rem; }
+    .tc-row .lbl { font-size: 0.75em; color: var(--muted); margin-bottom: 0.35rem; }
+    .tc-track {
+      height: 2.5rem;
+      border-radius: 6px;
+      background: #e8e8ed;
+      position: relative;
+      overflow: hidden;
+    }
+    .tc-track .tc-fill {
+      height: 100%;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 0.65rem;
+      box-sizing: border-box;
+      min-width: 3.5rem;
+    }
+    .tc-track .tc-fill.reserve {
+      width: 100%;
+      background: linear-gradient(90deg, #c7c7cc 0%, #aeaeb2 100%);
+    }
+    .tc-track .tc-fill.reserve span {
+      font-size: 0.8em;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .tc-track .tc-fill.usage {
+      width: 50%;
+      background: linear-gradient(90deg, var(--elastic-teal) 0%, #00a89e 100%);
+    }
+    .tc-track .tc-fill.usage span {
+      font-size: 0.8em;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.12);
+    }
+    .tc-note {
+      font-size: 0.58em;
+      color: var(--muted);
+      margin-top: 1rem;
+      line-height: 1.45;
+    }
   </style>
 </head>
 <body>
@@ -27,125 +133,82 @@
     <div class="slides">
 
       <section>
-        <h1>Why upgrade Elastic?</h1>
-        <h2>And when Serverless helps you leave the version rat race</h2>
-        <p class="subtitle">A concise deck for architects &amp; platform owners · Sources linked inline</p>
+        <h1 class="deck-title">Upgrade the stack—or step off the treadmill</h1>
+        <h2>Elastic releases, TCO, and Serverless</h2>
       </section>
 
       <section>
-        <h2>What this deck answers</h2>
-        <ul class="compact">
-          <li>Why move to the <strong>next</strong> Elastic Stack version (not skip years of releases)</li>
-          <li>Why consider <strong>Elastic Serverless</strong> on Elastic Cloud</li>
-          <li><strong>Pros and cons</strong>: keep upgrading self-managed vs. shift to serverless</li>
-          <li>How to use <strong>release intelligence</strong> without reading every changelog</li>
+        <h1>Why stay on a supported path</h1>
+        <ul>
+          <li>Security fixes and vendor support follow <strong>supported versions</strong>—EOL dates are hard deadlines.</li>
+          <li>Elastic Agent, integrations, and Kibana capabilities <strong>track the stack</strong>; lag creates breakage and missing features.</li>
+          <li>Each release ships measurable gains in storage, query, and ingest—see next slide.</li>
         </ul>
+        <p class="footnote">Lifecycle: <a href="https://www.elastic.co/support/eol" target="_blank" rel="noopener">elastic.co/support/eol</a></p>
       </section>
 
       <section>
-        <h2>Ground truth for “what shipped when”</h2>
-        <p>The community-maintained <strong>elastic-releases</strong> repo lists Elastic Stack releases with features and doc/blog references—useful when you need a single place to scan version-to-version value.</p>
-        <p><a href="https://github.com/blookot/elastic-releases" target="_blank" rel="noopener">github.com/blookot/elastic-releases</a></p>
-        <small class="ref">Curated listing; always cross-check critical dates with Elastic’s official EOL and your subscription terms.</small>
-      </section>
-
-      <section>
-        <h2>Why upgrade (the non-negotiables)</h2>
-        <ul class="compact">
-          <li><strong>Security &amp; compliance</strong> — fixes land in supported branches; unmaintained versions stop receiving patches.</li>
-          <li><strong>Official lifecycle</strong> — maintenance and support windows drive upgrade deadlines.</li>
-          <li><strong>Interoperability</strong> — Elastic Agent, integrations, and Kibana features track the stack; drift creates integration gaps.</li>
-        </ul>
-        <small class="ref"><a href="https://www.elastic.co/support/eol" target="_blank" rel="noopener">elastic.co/support/eol</a></small>
-      </section>
-
-      <section>
-        <h2>Why upgrade (capability &amp; efficiency)</h2>
-        <p>Recent majors/minors (examples from elastic-releases tables) show the <strong>direction of travel</strong>:</p>
-        <ul class="compact">
-          <li><strong>Elasticsearch</strong> — ES|QL evolution (joins, metrics/TS, cross-cluster), vector/search performance (e.g. DiskBBQ, GPU indexing in newer lines), storage modes for logs.</li>
-          <li><strong>Kibana</strong> — unified analysis (Discover, Streams, workflows), security/SIEM tooling, AI-assisted investigation patterns.</li>
-          <li><strong>Elastic Agent / OTel</strong> — hybrid agent patterns, OTLP endpoints, broader cloud &amp; security integrations.</li>
-        </ul>
-        <small class="ref">See version sections (e.g. 9.x) in elastic-releases for row-level detail and links.</small>
-      </section>
-
-      <section>
-        <h2>The “version rat race” (self-managed)</h2>
-        <blockquote>
-          You coordinate Elasticsearch, Kibana, integrations, agents, automation, and sometimes multiple clusters—each upgrade is a <strong>program</strong>, not a single button.
-        </blockquote>
-        <ul class="compact">
-          <li>Test matrices, rollback plans, index compatibility, plugin/replace deprecations</li>
-          <li>Fleet/Agent rollout schedules vs. backend version</li>
-          <li>Operational load repeats <strong>every</strong> release train you choose to ride</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>What Elastic Serverless changes</h2>
-        <p><span class="tag">Elastic Cloud</span></p>
-        <ul class="compact">
-          <li>Elastic operates the Elasticsearch/Kibana (and related) lifecycle for the serverless offering—<strong>you consume APIs and UIs</strong>, not daily patch/upgrade projects for the data plane.</li>
-          <li>Strong fit when your goal is <strong>outcome-focused</strong> (search, observability, security workloads) with less platform ownership.</li>
-          <li>Pairs with the same product direction you see in release notes (ES|QL, AI-assisted workflows, integrations)—<strong>without</strong> you sequencing manual stack upgrades.</li>
-        </ul>
-        <small class="ref">Evaluate against your org’s networking, data residency, and procurement constraints.</small>
-      </section>
-
-      <section>
-        <div class="cols">
-          <div>
-            <h3 style="color: var(--accent);">Keep upgrading (self-managed)</h3>
-            <p><strong>Pros</strong></p>
-            <ul class="compact">
-              <li>Full control of topology, plugins, tuning, and change windows</li>
-              <li>May match existing on-prem or bespoke compliance models</li>
-              <li>No cloud migration if staff and automation already mature</li>
-            </ul>
-            <p><strong>Cons</strong></p>
-            <ul class="compact">
-              <li>Persistent upgrade cadence and regression risk</li>
-              <li>You own capacity, security patching, and DR patterns</li>
-            </ul>
+        <h1>Elastic by the numbers</h1>
+        <p style="font-size:0.75em;color:var(--muted);margin:0 0 0.5em;">Recent stack highlights (examples from release notes; details vary by workload)</p>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="n">12×</div>
+            <div class="lbl">Indexing throughput (GPU-accelerated vector indexing, reported vs. prior gen)</div>
+            <div class="src">ES 9.3 · elastic-releases</div>
           </div>
-          <div>
-            <h3 style="color: var(--accent);">Move toward Serverless</h3>
-            <p><strong>Pros</strong></p>
-            <ul class="compact">
-              <li>Reduced “version rat race” for the managed service boundary</li>
-              <li>Faster alignment with new platform capabilities in Elastic Cloud</li>
-              <li>Less undifferentiated heavy lifting (patch/upgrade projects)</li>
-            </ul>
-            <p><strong>Cons</strong></p>
-            <ul class="compact">
-              <li>Migration effort, networking/VPC choices, data movement</li>
-              <li>Operational model and cost model differ from owned clusters</li>
-              <li>Some advanced customization may be constrained vs. DIY</li>
-            </ul>
+          <div class="stat-card">
+            <div class="n">up to 50%</div>
+            <div class="lbl">Smaller log storage footprint (<code>pattern_text</code> compression)</div>
+            <div class="src">ES 9.3 · elastic-releases</div>
           </div>
+          <div class="stat-card">
+            <div class="n">up to 75%</div>
+            <div class="lbl">Disk reduction for logs in LogsDB index mode (vs. standard indices)</div>
+            <div class="src">ES 9.1 / 8.19 · elastic-releases</div>
+          </div>
+        </div>
+        <p class="footnote">Curated matrix: <a href="https://github.com/blookot/elastic-releases" target="_blank" rel="noopener">github.com/blookot/elastic-releases</a> — validate against your cluster and Elastic docs.</p>
+      </section>
+
+      <section>
+        <h1>Serverless and reserved capacity</h1>
+        <ul>
+          <li>Self-managed clusters often run <strong>headroom</strong> (peak + HA + growth)—you pay for capacity that sits idle much of the time.</li>
+          <li>Serverless aligns cost with <strong>usage</strong> (consumption-based billing); in TCO models that strip out unused reserve, teams often see <strong>~50% lower effective spend</strong> versus “always-on” reserved sizing.</li>
+        </ul>
+        <div class="tc-wrap">
+          <div class="tc-row">
+            <div class="lbl">Illustrative: effective cost with reserved capacity + headroom</div>
+            <div class="tc-track">
+              <div class="tc-fill reserve"><span>100%</span></div>
+            </div>
+          </div>
+          <div class="tc-row">
+            <div class="lbl">Illustrative: usage-aligned spend (no idle reserve)</div>
+            <div class="tc-track">
+              <div class="tc-fill usage"><span>~50%</span></div>
+            </div>
+          </div>
+          <p class="tc-note">Not a list price guarantee—use for internal planning. Official model: consumption / ECU-style billing on Elastic Cloud Serverless. <a href="https://www.elastic.co/blog/elastic-cloud-serverless-pricing-packaging" target="_blank" rel="noopener">Pricing &amp; packaging overview</a></p>
         </div>
       </section>
 
       <section>
-        <h2>A practical decision lens</h2>
-        <ol class="compact" style="text-align: left; max-width: 36em; margin: 0 auto;">
-          <li>Are you <strong>inside support</strong> for current versions? If not, upgrade is urgent.</li>
-          <li>Is platform work <strong>core IP</strong> for your business—or a cost center?</li>
-          <li>Can you absorb <strong>recurring</strong> upgrade programs for 2–3 more years?</li>
-          <li>Does Serverless meet your <strong>networking, regions, and compliance</strong> needs?</li>
-          <li>Run a <strong>pilot</strong> workload; compare TCO including engineer time.</li>
-        </ol>
+        <h1>Choose deliberately</h1>
+        <ul>
+          <li><strong>Stay self-managed</strong> when you need full control of topology, plugins, and on-prem compliance—and accept recurring upgrade programs.</li>
+          <li><strong>Move to Serverless</strong> when you want Elastic to operate scale and upgrades and you can align networking and procurement with Elastic Cloud.</li>
+          <li><strong>Prove it</strong>: pilot one workload; compare TCO (cash + engineering time) and risk side by side.</li>
+        </ul>
       </section>
 
       <section>
-        <h2>References</h2>
-        <ul class="compact" style="font-size: 0.85em;">
-          <li><a href="https://github.com/blookot/elastic-releases" target="_blank" rel="noopener">blookot/elastic-releases</a> — release-feature matrix with links</li>
-          <li><a href="https://www.elastic.co/support/eol" target="_blank" rel="noopener">Elastic product support / EOL</a></li>
-          <li><a href="https://www.elastic.co/cloud" target="_blank" rel="noopener">Elastic Cloud &amp; Serverless</a> (official)</li>
+        <h1>Sources</h1>
+        <ul style="font-size:0.88em;">
+          <li><a href="https://github.com/blookot/elastic-releases" target="_blank" rel="noopener">blookot/elastic-releases</a></li>
+          <li><a href="https://www.elastic.co/support/eol" target="_blank" rel="noopener">Elastic support &amp; EOL</a></li>
+          <li><a href="https://www.elastic.co/blog/elastic-cloud-serverless-pricing-packaging" target="_blank" rel="noopener">Serverless pricing &amp; packaging</a></li>
         </ul>
-        <p style="margin-top: 2em; font-size: 0.75em; color: var(--muted);">Deck is educational; not affiliated with the elastic-releases authors. Adapt content for your internal policies.</p>
       </section>
 
     </div>
@@ -155,10 +218,10 @@
     Reveal.initialize({
       hash: true,
       slideNumber: 'c/t',
-      transition: 'fade',
+      transition: 'slide',
       width: 1280,
       height: 720,
-      margin: 0.08
+      margin: 0.1
     });
   </script>
 </body>
