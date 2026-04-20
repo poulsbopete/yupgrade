@@ -26,15 +26,19 @@
       --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
+    /*
+      Reveal scales the deck to fill the window; on large monitors scale > 1 makes text enormous.
+      We cap maxScale in initialize and override the theme’s 40px base font.
+    */
     .reveal {
       font-family: var(--font-stack);
       color: var(--apple-black);
       background: var(--apple-bg);
+      font-size: 21px !important;
     }
 
-    /* Top-align slides (Reveal defaults to vertical centering, which wastes space and clips tall slides) */
     .reveal .slides > section {
-      padding: calc(48px + 10px) 2.5rem 1rem;
+      padding: calc(48px + 8px) 2rem 3.5rem;
       box-sizing: border-box;
     }
 
@@ -50,7 +54,7 @@
       align-items: center;
       justify-content: center;
       gap: 2rem;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 400;
       letter-spacing: -0.01em;
       color: var(--apple-black);
@@ -70,8 +74,8 @@
     }
 
     .reveal h1 {
-      font-size: 1.55em;
-      line-height: 1.12;
+      font-size: 1.35em;
+      line-height: 1.15;
       font-weight: 600;
       margin-top: 0;
     }
@@ -115,7 +119,7 @@
       margin: 0 0 0.35em;
     }
     section.hero .hero-title {
-      font-size: 2.35em;
+      font-size: 1.95em;
       font-weight: 600;
       line-height: 1.05;
       letter-spacing: -0.02em;
@@ -140,9 +144,9 @@
       padding-left: 1.1em;
     }
     .reveal ul li {
-      margin: 0.45em 0;
-      font-size: 0.82em;
-      line-height: 1.42;
+      margin: 0.4em 0;
+      font-size: 0.95em;
+      line-height: 1.4;
       color: var(--apple-black);
     }
 
@@ -381,11 +385,17 @@
       slideNumber: 'c/t',
       transition: 'fade',
       transitionSpeed: 'default',
-      /* Critical: default true vertically centers content and wastes top space / clips bottom */
       center: false,
       width: 1280,
-      height: 720,
-      margin: 0.04
+      /* Slightly taller slide canvas so dense slides fit without clipping */
+      height: 800,
+      margin: 0.06,
+      /*
+        Without this, Reveal scales UP on big displays (e.g. scale 1.4×) and everything looks huge.
+        Cap at 1:1 so 100% browser zoom ≈ readable deck size; smaller windows still scale down.
+      */
+      maxScale: 1,
+      minScale: 0.2
     });
   </script>
 </body>
