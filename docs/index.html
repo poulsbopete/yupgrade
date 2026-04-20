@@ -99,15 +99,6 @@
       line-height: 1.35;
     }
 
-    .reveal .slide-eyebrow {
-      margin: 0 0 0.35em;
-      font-size: 0.65em;
-      font-weight: 600;
-      color: var(--apple-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
     .reveal .slide-number {
       color: var(--apple-gray);
       font-size: 12px;
@@ -236,61 +227,6 @@
       color: var(--apple-gray);
       margin-top: 0.75rem;
       font-weight: 400;
-    }
-
-    /* TCO bars */
-    .tc-wrap {
-      max-width: 40rem;
-      margin: 0.65rem auto 0;
-      text-align: left;
-    }
-    .tc-row { margin-bottom: 0.55rem; }
-    .tc-row .lbl {
-      font-size: 0.72em;
-      color: var(--apple-gray-2);
-      margin-bottom: 0.4rem;
-      font-weight: 400;
-    }
-    .tc-track {
-      height: 1.85rem;
-      border-radius: 980px;
-      background: #e8e8ed;
-      position: relative;
-      overflow: hidden;
-    }
-    .tc-track .tc-fill {
-      height: 100%;
-      border-radius: 980px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 0.75rem;
-      box-sizing: border-box;
-      min-width: 3.25rem;
-    }
-    .tc-track .tc-fill.reserve {
-      width: 100%;
-      background: linear-gradient(90deg, #d2d2d7 0%, #b8b8bd 100%);
-    }
-    .tc-track .tc-fill.reserve span {
-      font-size: 0.78em;
-      font-weight: 600;
-      color: var(--apple-black);
-    }
-    .tc-track .tc-fill.usage {
-      width: 50%;
-      background: linear-gradient(180deg, #42a1ec 0%, var(--apple-blue) 100%);
-    }
-    .tc-track .tc-fill.usage span {
-      font-size: 0.78em;
-      font-weight: 600;
-      color: #fff;
-    }
-    .tc-note {
-      font-size: 0.52em;
-      color: var(--apple-gray);
-      margin-top: 0.45rem;
-      line-height: 1.5;
     }
 
     .reveal .sources-list {
@@ -424,27 +360,7 @@
           <li><strong>Elastic Cloud Hosted</strong> is managed <strong>PaaS</strong>: you <strong>size</strong> deployments (capacity tiers—RAM, CPU, storage) and usually keep <strong>headroom</strong> for peaks. Cost tracks that <strong>provisioned</strong> footprint—even when utilization dips.</li>
           <li><strong>Elastic Serverless</strong> is <strong>consumption-based</strong>: billing follows <strong>ingest</strong>, <strong>retention</strong>, and other product meters—not reserving a cluster’s always-on capacity. Internal TCO models sometimes show <strong>~50% lower effective spend</strong> vs. over-provisioned Hosted when workloads are bursty.</li>
         </ul>
-      </section>
-
-      <section>
-        <p class="slide-eyebrow">TCO shape</p>
-        <h1>Provisioned (Hosted) vs metered (Serverless)</h1>
-        <p class="section-lead">Same Elastic stack features—different commercial model: <strong>sized infrastructure</strong> vs <strong>ingest &amp; retention</strong>.</p>
-        <div class="tc-wrap">
-          <div class="tc-row">
-            <div class="lbl">Illustrative: Elastic Cloud Hosted — provisioned capacity + headroom</div>
-            <div class="tc-track">
-              <div class="tc-fill reserve"><span>100%</span></div>
-            </div>
-          </div>
-          <div class="tc-row">
-            <div class="lbl">Illustrative: Elastic Serverless — ingest &amp; retention (no idle cluster to reserve)</div>
-            <div class="tc-track">
-              <div class="tc-fill usage"><span>~50%</span></div>
-            </div>
-          </div>
-          <p class="tc-note">Illustration only—not a quote. <strong>Hosted</strong>: <a href="https://www.elastic.co/pricing/elastic-cloud" target="_blank" rel="noopener">Elastic Cloud pricing</a> (sized deployments). <strong>Serverless</strong>: <a href="https://www.elastic.co/blog/elastic-cloud-serverless-pricing-packaging" target="_blank" rel="noopener">pricing &amp; packaging</a> (consumption). Compare with your workload.</p>
-        </div>
+        <p class="footnote"><a href="https://www.elastic.co/pricing/elastic-cloud" target="_blank" rel="noopener">Elastic Cloud (Hosted) pricing</a> · <a href="https://www.elastic.co/blog/elastic-cloud-serverless-pricing-packaging" target="_blank" rel="noopener">Serverless pricing &amp; packaging</a></p>
       </section>
 
       <section>
