@@ -286,6 +286,32 @@
       margin: 0.25rem 0 0;
       line-height: 1.4;
     }
+
+    /* “Why” callout — repeated on every slide */
+    .reveal .slide-callout {
+      margin-top: 1.1rem;
+      margin-bottom: 0;
+      padding: 0.5rem 0.75rem 0.5rem 0.8rem;
+      border-left: 3px solid var(--apple-blue);
+      background: rgba(0, 113, 227, 0.07);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.65em;
+      line-height: 1.42;
+      color: var(--apple-black);
+      max-width: 36rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .reveal .slide-callout .why-label {
+      font-weight: 700;
+      color: var(--apple-blue);
+      letter-spacing: 0.02em;
+      margin-right: 0.35em;
+    }
+    section.hero .slide-callout {
+      max-width: 32rem;
+    }
   </style>
 </head>
 <body>
@@ -301,6 +327,7 @@
         <p class="eyebrow">Strategy</p>
         <h1 class="hero-title">Upgrade the stack.<br>Or step off the treadmill.</h1>
         <p class="hero-sub">Releases, TCO, and Elastic Cloud Serverless—concise and numbers-first.</p>
+        <p class="slide-callout"><span class="why-label">Why</span>Staying on a supported path—or choosing Serverless—cuts risk and keeps capabilities you can’t get on abandoned versions.</p>
       </section>
 
       <section>
@@ -311,6 +338,7 @@
           <li>Each release ships measurable gains in storage, query, and ingest—next slide.</li>
         </ul>
         <p class="footnote">Lifecycle: <a href="https://www.elastic.co/support/eol" target="_blank" rel="noopener">elastic.co/support/eol</a></p>
+        <p class="slide-callout"><span class="why-label">Why</span>EOL and integration drift mean lagging versions cost you security, support, and working features—not just “missing niceties.”</p>
       </section>
 
       <section>
@@ -334,6 +362,7 @@
           </div>
         </div>
         <p class="footnote">Matrix: <a href="https://github.com/blookot/elastic-releases" target="_blank" rel="noopener">github.com/blookot/elastic-releases</a> — validate in your environment.</p>
+        <p class="slide-callout"><span class="why-label">Why</span>Concrete throughput and storage wins are the business case for upgrading—otherwise “new version” feels abstract.</p>
       </section>
 
       <section>
@@ -343,6 +372,7 @@
           <li><strong>Minors</strong> (e.g. 8.14 → 8.19): mostly additive fixes and features; upgrade steps follow Elastic’s published <a href="https://www.elastic.co/docs/deploy-manage/upgrade#upgrade-paths" target="_blank" rel="noopener">upgrade paths</a> (which hops are supported).</li>
           <li><strong>Majors</strong> (e.g. <strong>9.0</strong>): bigger platform shifts—e.g. Lucene 10 and cleanup of deprecated surfaces—plan with the Upgrade Assistant and <a href="https://www.elastic.co/docs/deploy-manage/upgrade/plan-upgrade" target="_blank" rel="noopener">prepare-to-upgrade</a> guidance.</li>
         </ul>
+        <p class="slide-callout"><span class="why-label">Why</span>You need a credible map of what shipped per version so upgrade work is explainable—not “because vendor said so.”</p>
       </section>
 
       <section>
@@ -361,6 +391,7 @@
           </div>
           <p class="path-caption">Example gate for many 9.x plans—confirm your exact path in Elastic’s upgrade matrix.</p>
         </div>
+        <p class="slide-callout"><span class="why-label">Why</span>8→9 and “move to Serverless” are different programs—pick the sequence that matches in-place upgrade vs platform migration.</p>
       </section>
 
       <section>
@@ -370,6 +401,7 @@
           <li><strong>Elastic Serverless</strong> is <strong>consumption-based</strong>: billing follows <strong>ingest</strong>, <strong>retention</strong>, and other product meters—not reserving a cluster’s always-on capacity. Internal TCO models sometimes show <strong>~50% lower effective spend</strong> vs. over-provisioned Hosted when workloads are bursty.</li>
         </ul>
         <p class="footnote">Pricing: <a href="https://www.elastic.co/pricing" target="_blank" rel="noopener">https://www.elastic.co/pricing</a></p>
+        <p class="slide-callout"><span class="why-label">Why</span>Provisioned vs consumption changes how budget, headroom, and finance see the stack—not just “which UI button.”</p>
       </section>
 
       <section>
@@ -382,6 +414,7 @@
           <li><strong>Versionless by design</strong>: no compatibility matrices or coordinated upgrades across linked projects—it just works.</li>
         </ul>
         <p class="footnote"><a href="https://www.elastic.co/docs/explore-analyze/cross-project-search" target="_blank" rel="noopener">Cross-project search docs</a></p>
+        <p class="slide-callout"><span class="why-label">Why</span>CPS removes duplicate networking and permission silos so multi-project search is operable—not a science project.</p>
       </section>
 
       <section>
@@ -391,6 +424,7 @@
           <li><strong>Serverless</strong> when Elastic should run scale and upgrades and Cloud fits your network and procurement.</li>
           <li><strong>Pilot</strong> one workload; compare TCO and risk with real data.</li>
         </ul>
+        <p class="slide-callout"><span class="why-label">Why</span>The right answer balances control, compliance, and how much undifferentiated platform work your org should own.</p>
       </section>
 
       <section>
@@ -402,6 +436,7 @@
           <li><a href="https://www.elastic.co/pricing" target="_blank" rel="noopener">https://www.elastic.co/pricing</a></li>
           <li><a href="https://www.elastic.co/docs/explore-analyze/cross-project-search" target="_blank" rel="noopener">Cross-project search (CPS)</a></li>
         </ul>
+        <p class="slide-callout"><span class="why-label">Why</span>Every slide should be checkable—these links are where stakeholders verify EOL, paths, pricing, and features.</p>
       </section>
 
     </div>
