@@ -305,6 +305,42 @@
     .reveal .sources-list li a {
       font-size: 1.05em;
     }
+
+    /* Version path (8 → 9 vs Serverless) */
+    .path-block {
+      margin: 0.65rem auto 0;
+      max-width: 38rem;
+      text-align: left;
+      font-size: 0.78em;
+      line-height: 1.45;
+    }
+    .path-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.5rem;
+      margin: 0.5rem 0 0.35rem;
+    }
+    .path-box {
+      background: var(--apple-bg-elevated);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 0.4em 0.65em;
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+    .path-arrow {
+      color: var(--apple-gray);
+      font-weight: 400;
+    }
+    .path-caption {
+      font-size: 0.62em;
+      color: var(--apple-gray);
+      text-align: center;
+      margin: 0.25rem 0 0;
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -356,6 +392,33 @@
       </section>
 
       <section>
+        <h1>What you get in each release</h1>
+        <ul>
+          <li>Use <a href="https://github.com/blookot/elastic-releases" target="_blank" rel="noopener">blookot/elastic-releases</a> as a compact, version-by-version map (ES, Kibana, Agent, etc.) with links to docs and blogs.</li>
+          <li><strong>Minors</strong> (e.g. 8.14 → 8.19): mostly additive fixes and features; upgrade steps follow Elastic’s published <a href="https://www.elastic.co/docs/deploy-manage/upgrade#upgrade-paths" target="_blank" rel="noopener">upgrade paths</a> (which hops are supported).</li>
+          <li><strong>Majors</strong> (e.g. <strong>9.0</strong>): bigger platform shifts—e.g. Lucene 10 and cleanup of deprecated surfaces—plan with the Upgrade Assistant and <a href="https://www.elastic.co/docs/deploy-manage/upgrade/plan-upgrade" target="_blank" rel="noopener">prepare-to-upgrade</a> guidance.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>From 8.x to 9—or to Serverless</h1>
+        <ul>
+          <li><strong>Self-managed → 9.x</strong>: move Elasticsearch + Kibana along the required <strong>8.last</strong> milestone first (Elastic’s examples use the latest <strong>8.19</strong> before jumping to 9.x), then your target 9.x—snapshot, Upgrade Assistant, then upgrade.</li>
+          <li><strong>Serverless</strong>: provision an Elastic Cloud Serverless project and <strong>migrate</strong> (snapshot/restore, reindex, or dual-write)—it’s a platform move, not an in-place cluster version change.</li>
+        </ul>
+        <div class="path-block">
+          <div class="path-flow" aria-hidden="true">
+            <span class="path-box">8.x today</span>
+            <span class="path-arrow">→</span>
+            <span class="path-box">latest 8.last</span>
+            <span class="path-arrow">→</span>
+            <span class="path-box">9.x</span>
+          </div>
+          <p class="path-caption">Example gate for many 9.x plans—confirm your exact path in Elastic’s upgrade matrix.</p>
+        </div>
+      </section>
+
+      <section>
         <h1>Serverless and reserved capacity</h1>
         <ul>
           <li>Self-managed clusters hold <strong>headroom</strong> for peak, HA, and growth—you pay for idle capacity.</li>
@@ -396,6 +459,7 @@
         <h1>Sources</h1>
         <ul class="sources-list">
           <li><a href="https://github.com/blookot/elastic-releases" target="_blank" rel="noopener">blookot/elastic-releases</a></li>
+          <li><a href="https://www.elastic.co/docs/deploy-manage/upgrade/plan-upgrade" target="_blank" rel="noopener">Plan your upgrade</a> · <a href="https://www.elastic.co/docs/deploy-manage/upgrade#upgrade-paths" target="_blank" rel="noopener">Upgrade paths</a></li>
           <li><a href="https://www.elastic.co/support/eol" target="_blank" rel="noopener">Elastic support &amp; EOL</a></li>
           <li><a href="https://www.elastic.co/blog/elastic-cloud-serverless-pricing-packaging" target="_blank" rel="noopener">Serverless pricing &amp; packaging</a></li>
         </ul>
