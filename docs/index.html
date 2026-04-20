@@ -42,6 +42,17 @@
       box-sizing: border-box;
     }
 
+    /*
+      Reveal sets .reveal-viewport { overflow: hidden }, so the page won’t scroll.
+      Cap slide height and scroll inside the slide when content is taller than the frame.
+    */
+    .reveal .slides > section.present {
+      max-height: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch;
+    }
+
     /* Frosted top bar (marketing-site feel) */
     .site-chrome {
       position: fixed;
@@ -86,6 +97,15 @@
       color: var(--apple-gray);
       margin-top: 0.5rem;
       line-height: 1.35;
+    }
+
+    .reveal .slide-eyebrow {
+      margin: 0 0 0.35em;
+      font-size: 0.65em;
+      font-weight: 600;
+      color: var(--apple-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
 
     .reveal .slide-number {
@@ -341,6 +361,11 @@
           <li>Self-managed clusters hold <strong>headroom</strong> for peak, HA, and growth—you pay for idle capacity.</li>
           <li>Serverless ties cost to <strong>usage</strong>; internal TCO models often land near <strong>~50% lower effective spend</strong> vs. always-on reserved sizing.</li>
         </ul>
+      </section>
+
+      <section>
+        <p class="slide-eyebrow">Serverless</p>
+        <h1>TCO: reserved vs. usage-aligned</h1>
         <div class="tc-wrap">
           <div class="tc-row">
             <div class="lbl">Illustrative: cost with reserved capacity + headroom</div>
